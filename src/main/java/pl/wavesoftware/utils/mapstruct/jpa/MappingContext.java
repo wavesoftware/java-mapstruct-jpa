@@ -1,4 +1,4 @@
-package pl.wavesoftware.utils.mapstruct;
+package pl.wavesoftware.utils.mapstruct.jpa;
 
 import java.util.Optional;
 

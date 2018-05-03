@@ -1,10 +1,7 @@
-package pl.wavesoftware.utils.mapstruct;
+package pl.wavesoftware.utils.mapstruct.jpa;
 
 import lombok.RequiredArgsConstructor;
-import pl.wavesoftware.utils.mapstruct.CompositeContext.CompositeContextBuilder;
-import pl.wavesoftware.utils.mapstruct.cycles.CyclicGraphContext;
-import pl.wavesoftware.utils.mapstruct.jpa.JpaMappingContext;
-import pl.wavesoftware.utils.mapstruct.jpa.JpaMappingContextFactory;
+import pl.wavesoftware.utils.mapstruct.jpa.CompositeContext.CompositeContextBuilder;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;

@@ -1,9 +1,5 @@
 package pl.wavesoftware.utils.mapstruct.jpa;
 
-import pl.wavesoftware.utils.mapstruct.IdentifierCollector;
-import pl.wavesoftware.utils.mapstruct.StoringMappingContext;
-import pl.wavesoftware.utils.mapstruct.Mappings;
-
 import java.util.function.Supplier;
 
 /**

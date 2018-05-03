@@ -1,4 +1,4 @@
-package pl.wavesoftware.utils.mapstruct.lang;
+package pl.wavesoftware.lang;
 
 import java.util.Objects;
 import java.util.function.Consumer;

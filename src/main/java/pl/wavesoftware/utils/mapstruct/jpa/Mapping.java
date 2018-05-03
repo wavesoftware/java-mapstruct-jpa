@@ -1,8 +1,8 @@
-package pl.wavesoftware.utils.mapstruct;
+package pl.wavesoftware.utils.mapstruct.jpa;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.wavesoftware.utils.mapstruct.lang.TriConsumer;
+import pl.wavesoftware.lang.TriConsumer;
 
 /**
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>

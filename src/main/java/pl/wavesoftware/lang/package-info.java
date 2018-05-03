@@ -3,6 +3,6 @@
  * @since 2018-05-03
  */
 @ParametersAreNonnullByDefault
-package pl.wavesoftware.utils.mapstruct.cycles;
+package pl.wavesoftware.lang;
 
 import javax.annotation.ParametersAreNonnullByDefault;

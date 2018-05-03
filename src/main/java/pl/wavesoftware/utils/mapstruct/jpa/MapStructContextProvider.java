@@ -1,4 +1,4 @@
-package pl.wavesoftware.utils.mapstruct;
+package pl.wavesoftware.utils.mapstruct.jpa;
 
 /**
  * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>

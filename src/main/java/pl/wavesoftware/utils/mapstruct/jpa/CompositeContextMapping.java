@@ -1,6 +1,6 @@
-package pl.wavesoftware.utils.mapstruct;
+package pl.wavesoftware.utils.mapstruct.jpa;
 
-import pl.wavesoftware.utils.mapstruct.lang.TriConsumer;
+import pl.wavesoftware.lang.TriConsumer;
 
 /**
  * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>

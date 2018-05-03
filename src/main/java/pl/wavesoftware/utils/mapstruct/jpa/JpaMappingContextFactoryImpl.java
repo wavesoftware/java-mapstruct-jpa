@@ -1,9 +1,6 @@
 package pl.wavesoftware.utils.mapstruct.jpa;
 
 import lombok.RequiredArgsConstructor;
-import pl.wavesoftware.utils.mapstruct.IdentifierCollector;
-import pl.wavesoftware.utils.mapstruct.Mappings;
-import pl.wavesoftware.utils.mapstruct.StoringMappingContext;
 
 import javax.persistence.EntityManager;
 import java.util.function.Supplier;

@@ -1,10 +1,9 @@
-package pl.wavesoftware.utils.mapstruct.cycles;
+package pl.wavesoftware.utils.mapstruct.jpa;
 
 import org.mapstruct.BeforeMapping;
 import org.mapstruct.Context;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.TargetType;
-import pl.wavesoftware.utils.mapstruct.MapStructContext;
 
 import javax.annotation.Nullable;
 import java.util.IdentityHashMap;
