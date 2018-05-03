@@ -4,7 +4,7 @@ import org.mapstruct.BeforeMapping;
 import org.mapstruct.Context;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.TargetType;
-import pl.wavesoftware.utils.mapstruct.MapstructContext;
+import pl.wavesoftware.utils.mapstruct.MapStructContext;
 
 import javax.annotation.Nullable;
 import java.util.IdentityHashMap;
@@ -22,7 +22,7 @@ import java.util.Optional;
  * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
  * @since 2018-04-12
  */
-public final class CyclicGraphContext implements MapstructContext {
+public final class CyclicGraphContext implements MapStructContext {
 
   private Map<Object, Object> knownInstances = new IdentityHashMap<>();
 

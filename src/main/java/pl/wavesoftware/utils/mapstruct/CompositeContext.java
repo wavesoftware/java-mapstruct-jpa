@@ -17,7 +17,7 @@ import java.util.Optional;
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 02.05.18
  */
-public final class CompositeMappingContext implements MapstructContext {
+public final class CompositeContext implements MapStructContext {
   private final List<MappingContext> mappingContexts = new ArrayList<>();
 
   /**
@@ -25,17 +25,17 @@ public final class CompositeMappingContext implements MapstructContext {
    *
    * @param mappingContexts a array of mapping contexts
    */
-  public CompositeMappingContext(MappingContext... mappingContexts) {
+  public CompositeContext(MappingContext... mappingContexts) {
     Collections.addAll(this.mappingContexts, mappingContexts);
   }
 
   /**
-   * A builder interface for {@link CompositeMappingContext}.
+   * A builder interface for {@link CompositeContext}.
    *
    * @return a builder interface
    */
-  public static CompositeMappingContextBuilder builder() {
-    return new CompositeMappingContextBuilder();
+  public static CompositeContextBuilder builder() {
+    return new CompositeContextBuilder();
   }
 
   @Override
@@ -71,18 +71,18 @@ public final class CompositeMappingContext implements MapstructContext {
     return Optional.empty();
   }
 
-  private static final class CompositeMappingContextBuilder {
+  public static final class CompositeContextBuilder {
     private final List<MappingContext> mappingContexts = new ArrayList<>();
 
-    public CompositeMappingContextBuilder addContext(MappingContext... mappingContexts) {
+    public CompositeContextBuilder addContext(MappingContext... mappingContexts) {
       this.mappingContexts.addAll(
         Arrays.asList(mappingContexts)
       );
       return this;
     }
 
-    public CompositeMappingContext build() {
-      return new CompositeMappingContext(
+    public CompositeContext build() {
+      return new CompositeContext(
         mappingContexts.toArray(new MappingContext[0])
       );
     }

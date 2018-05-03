@@ -1,8 +1,8 @@
 package pl.wavesoftware.utils.mapstruct.jpa.collection;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.LazyInitializationException;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -33,16 +33,19 @@ public final class UninitializedList<T> implements List<T> {
   }
 
   @Override
+  @Nonnull
   public Iterator<T> iterator() {
     throw newLazyInitializationException();
   }
 
   @Override
+  @Nonnull
   public Object[] toArray() {
     throw newLazyInitializationException();
   }
 
   @Override
+  @Nonnull
   public <T1> T1[] toArray(T1[] a) {
     throw newLazyInitializationException();
   }
@@ -118,16 +121,19 @@ public final class UninitializedList<T> implements List<T> {
   }
 
   @Override
+  @Nonnull
   public ListIterator<T> listIterator() {
     throw newLazyInitializationException();
   }
 
   @Override
+  @Nonnull
   public ListIterator<T> listIterator(int index) {
     throw newLazyInitializationException();
   }
 
   @Override
+  @Nonnull
   public List<T> subList(int fromIndex, int toIndex) {
     throw newLazyInitializationException();
   }
@@ -137,7 +143,7 @@ public final class UninitializedList<T> implements List<T> {
     return getClass().getSimpleName() + "<" + type.getSimpleName() + ">";
   }
 
-  private LazyInitializationException newLazyInitializationException() {
+  private RuntimeException newLazyInitializationException() {
     return new LazyInitializationException(
       "Trying to use uninitialized collection for type: List<"
         + type.getSimpleName()

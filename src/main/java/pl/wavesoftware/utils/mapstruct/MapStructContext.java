@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 02.05.18
  */
-public interface MapstructContext extends StoringMappingContext {
+public interface MapStructContext extends StoringMappingContext {
 
   /**
    * Gets an already mapped instance of targetType for given source object.
