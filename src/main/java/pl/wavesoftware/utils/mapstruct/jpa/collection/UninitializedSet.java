@@ -17,12 +17,12 @@ public final class UninitializedSet<E> implements Set<E> {
   private final Class<?> type;
 
   @Override
-  public int size() {
+  public boolean isEmpty() {
     throw newLazyInitializationException();
   }
 
   @Override
-  public boolean isEmpty() {
+  public int size() {
     throw newLazyInitializationException();
   }
 

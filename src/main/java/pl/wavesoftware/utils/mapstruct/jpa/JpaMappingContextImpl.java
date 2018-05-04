@@ -73,7 +73,7 @@ final class JpaMappingContextImpl implements JpaMappingContext {
     Class<I> sourceClass = (Class<I>) source.getClass();
     Class<O> targetClass = (Class<O>) managed.getClass();
     C context = (C) storingMappingContext.get();
-    Mapping<I, O, C> mapping = mappings.getMapping(sourceClass, targetClass);
+    Mapping<I,O,C> mapping = mappings.getMapping(sourceClass, targetClass);
     mapping.accept(source, managed, context);
   }
 }

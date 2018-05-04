@@ -1,7 +1,6 @@
 package pl.wavesoftware.utils.mapstruct.jpa;
 
 import lombok.RequiredArgsConstructor;
-import pl.wavesoftware.utils.mapstruct.jpa.CompositeContext.CompositeContextBuilder;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -36,7 +35,7 @@ public abstract class AbstractCompositeContextProvider
   }
 
   protected abstract JpaMappingContextFactory getJpaMappingContextFactory();
-  protected abstract Iterable<MappingProvider<?, ?, ?>> getMappingProviders();
+  protected abstract Iterable<MappingProvider> getMappingProviders();
   protected abstract IdentifierCollector getIdentifierCollector();
 
   @RequiredArgsConstructor

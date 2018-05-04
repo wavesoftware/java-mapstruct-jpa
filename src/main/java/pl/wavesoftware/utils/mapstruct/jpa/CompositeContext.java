@@ -35,7 +35,7 @@ public final class CompositeContext implements MapStructContext {
    * @return a builder interface
    */
   public static CompositeContextBuilder builder() {
-    return new CompositeContextBuilder();
+    return new CompositeContextBuilderImpl();
   }
 
   @Override
@@ -71,16 +71,18 @@ public final class CompositeContext implements MapStructContext {
     return Optional.empty();
   }
 
-  public static final class CompositeContextBuilder {
+  private static final class CompositeContextBuilderImpl implements CompositeContextBuilder {
     private final List<MappingContext> mappingContexts = new ArrayList<>();
 
-    public CompositeContextBuilder addContext(MappingContext... mappingContexts) {
+    @Override
+    public CompositeContextBuilderImpl addContext(MappingContext... mappingContexts) {
       this.mappingContexts.addAll(
         Arrays.asList(mappingContexts)
       );
       return this;
     }
 
+    @Override
     public CompositeContext build() {
       return new CompositeContext(
         mappingContexts.toArray(new MappingContext[0])

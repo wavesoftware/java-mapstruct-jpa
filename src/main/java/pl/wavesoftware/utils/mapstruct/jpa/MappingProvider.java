@@ -5,5 +5,5 @@ package pl.wavesoftware.utils.mapstruct.jpa;
  * @since 26.04.18
  */
 public interface MappingProvider<I, O, C> {
-  Mapping<I, O, C> provide();
+  Mapping<I,O,C> provide();
 }

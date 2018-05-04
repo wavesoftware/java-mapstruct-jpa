@@ -9,7 +9,7 @@ package pl.wavesoftware.utils.mapstruct.jpa;
 public interface Mappings {
 
   /**
-   * Searches for a Mapping for given source and target class. Source class is a class
+   * Searches for a AbstractMapping for given source and target class. Source class is a class
    * that we map from and target class is a class that we map to.
    *
    * @param sourceClass a source class to map from
@@ -17,11 +17,11 @@ public interface Mappings {
    * @param <S> a type of source class
    * @param <T> a type of target class
    * @param <C> a type of context that will be used for mapping
-   * @return a Mapping object for given configuration. If mapping is not found this method will
+   * @return a AbstractMapping object for given configuration. If mapping is not found this method will
    * fail with runtime exception as an indication of configuration error.
    */
-  <S, T, C> Mapping<S, T, C> getMapping(Class<S> sourceClass,
-                                        Class<T> targetClass);
+  <S, T, C> Mapping<S,T,C> getMapping(Class<S> sourceClass,
+                                      Class<T> targetClass);
 
   /**
    * Returns a builder for Mappings.
@@ -41,7 +41,7 @@ public interface Mappings {
      *
      * @param mapping a mapping to add
      */
-    void addMapping(Mapping<?, ?, ?> mapping);
+    void addMapping(Mapping<?,?,?> mapping);
 
     /**
      * Will build a Mappings class
