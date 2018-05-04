@@ -40,7 +40,7 @@ final class MappingsBuilderImpl implements MappingsBuilder {
       }
       throw new EidIllegalStateException(
         new Eid("20180425:135245"),
-        "AbstractMapping for source class %s and target class %s is not configured!",
+        "Mapping for source class %s and target class %s is not configured!",
         sourceClass.getName(), targetClass.getName()
       );
     }

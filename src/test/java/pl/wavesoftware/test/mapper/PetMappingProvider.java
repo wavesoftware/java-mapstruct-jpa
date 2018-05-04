@@ -8,19 +8,17 @@ import pl.wavesoftware.utils.mapstruct.jpa.CompositeContext;
 import pl.wavesoftware.utils.mapstruct.jpa.Mapping;
 import pl.wavesoftware.utils.mapstruct.jpa.MappingProvider;
 
-import javax.inject.Inject;
-
 /**
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 04.05.18
  */
-@RequiredArgsConstructor(onConstructor = @__(@Inject))
+@RequiredArgsConstructor
 final class PetMappingProvider implements MappingProvider<Pet, PetJPA, CompositeContext> {
 
   private final PetMapper petMapper;
 
   @Override
-  public Mapping<pl.wavesoftware.test.entity.Pet,pl.wavesoftware.test.jpa.PetJPA,CompositeContext> provide() {
+  public Mapping<Pet, PetJPA, CompositeContext> provide() {
     return AbstractCompositeContextMapping.mapperFor(
       Pet.class, PetJPA.class,
       petMapper::updateFromPet

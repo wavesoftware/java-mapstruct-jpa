@@ -1,6 +1,7 @@
 package pl.wavesoftware.test.mapper;
 
 import org.hibernate.Hibernate;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -18,13 +19,15 @@ import java.util.stream.Collectors;
  * @since 04.05.18
  */
 @Mapper(
-  uses = OwnerMapper.class,
+  uses = { OwnerMapper.class, ToyMapper.class },
   componentModel = "jsr330"
 )
 interface PetMapper {
   Pet map(PetJPA jpa, @Context CompositeContext context);
   PetJPA map(Pet pet, @Context CompositeContext context);
-  void updateFromPet(Pet pet, @MappingTarget PetJPA jpa, @Context CompositeContext context);
+  void updateFromPet(Pet pet,
+                     @MappingTarget PetJPA jpa,
+                     @Context CompositeContext context);
 
   default List<Pet> petJPASetToPetList(Set<PetJPA> set, @Context CompositeContext context) {
     if (!Hibernate.isInitialized(set)) {
@@ -33,5 +36,10 @@ interface PetMapper {
     return set.stream()
       .map(j -> map(j, context))
       .collect(Collectors.toList());
+  }
+
+  @AfterMapping
+  default void after(PetJPA petData, @MappingTarget Pet pet) {
+    pet.setReference(petData.getId());
   }
 }

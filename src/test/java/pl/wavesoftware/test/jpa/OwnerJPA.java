@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import java.util.Set;
  */
 @Setter
 @Getter
+@Entity
 @NoArgsConstructor
 public class OwnerJPA extends AbstractRecord {
   private String name;

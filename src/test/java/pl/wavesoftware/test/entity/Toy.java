@@ -1,10 +1,9 @@
 package pl.wavesoftware.test.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.annotation.Nullable;
 
 /**
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
@@ -12,11 +11,8 @@ import javax.annotation.Nullable;
  */
 @Setter
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
-public class Pet extends AbstractEntity {
+public class Toy extends AbstractEntity {
   private String name;
-  @Nullable
-  private Owner owner;
-  @Nullable
-  private Toy toy;
 }
