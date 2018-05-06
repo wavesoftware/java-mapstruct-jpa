@@ -10,3 +10,11 @@ matrix:
     env: GDMSESSION=sonar
   - jdk: openjdk8
     env: SONAR=publish
+  - jdk: openjdk8
+    env: SONAR=cloud
+    script: 
+      ./mvnw install
+        -Dsonar.organization=wavesoftware
+        -Dsonar.host.url=https://sonarcloud.io
+        -Dsonar.login=$SONARCLOUD_TOKEN
+        --fail-at-end
