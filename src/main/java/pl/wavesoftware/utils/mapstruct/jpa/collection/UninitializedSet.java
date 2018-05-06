@@ -84,6 +84,11 @@ public final class UninitializedSet<E> implements Set<E> {
     throw newLazyInitializationException();
   }
 
+  @Override
+  public String toString() {
+    return getClass().getSimpleName() + "<" + type.getSimpleName() + ">";
+  }
+
   private RuntimeException newLazyInitializationException() {
     return new LazyInitializationException(
       "Trying to use uninitialized collection for type: Set<"

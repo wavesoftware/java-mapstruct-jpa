@@ -14,7 +14,8 @@ import java.util.Set;
 @RequiredArgsConstructor
 public final class UninitializedMap<K, V> implements Map<K, V> {
 
-  private final Class<?> type;
+  private final Class<?> keyType;
+  private final Class<?> valueType;
 
   @Override
   public int size() {
@@ -79,10 +80,18 @@ public final class UninitializedMap<K, V> implements Map<K, V> {
     throw newLazyInitializationException();
   }
 
+  @Override
+  public String toString() {
+    return getClass().getSimpleName()
+      + "<" + keyType.getSimpleName() + ","
+      + valueType.getSimpleName() + ">";
+  }
+
   private RuntimeException newLazyInitializationException() {
     return new LazyInitializationException(
-      "Trying to use uninitialized collection for type: List<"
-        + type.getSimpleName()
+      "Trying to use uninitialized collection for type: Map<"
+        + keyType.getSimpleName() + ","
+        + valueType.getSimpleName()
         + ">. You need to fetch this collection before using it, for ex. using " +
         "JOIN FETCH in JPQL. This exception prevents lazy loading n+1 problem."
     );
