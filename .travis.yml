@@ -1,1 +1,12 @@
 language: java
+script: ./mvnw install --fail-at-end
+matrix:
+  include:
+  - jdk: openjdk8
+    env: JACOCO=true COVERALLS=true
+  - jdk: oraclejdk8
+  - jdk: oraclejdk9
+  - jdk: openjdk8
+    env: GDMSESSION=sonar
+  - jdk: openjdk8
+    env: SONAR=publish
