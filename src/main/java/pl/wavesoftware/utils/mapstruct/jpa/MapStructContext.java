@@ -6,6 +6,8 @@ import org.mapstruct.TargetType;
 import javax.annotation.Nullable;
 
 /**
+ * A MapStruct compatible context to be used with {@link org.mapstruct.Context} on mapper method.
+ *
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 02.05.18
  */

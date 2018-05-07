@@ -19,6 +19,7 @@ import pl.wavesoftware.test.TestRepository.Execution;
 import pl.wavesoftware.test.entity.Pet;
 import pl.wavesoftware.test.jpa.PetJPA;
 import pl.wavesoftware.test.mapper.MapperFacade;
+import pl.wavesoftware.utils.mapstruct.jpa.collection.LazyInitializationException;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class MappingTest {
     assertThat(aliceJpa).isNotNull();
     assertThat(mapper).isNotNull();
     assertThat(aliceJpa.getId()).isEqualTo(TestRepository.ALICE_ID);
-    assertThat(alice.getOwner()).isNotNull();
+    assertThat(aliceJpa.getOwner()).isNotNull();
     assertThat(aliceJpa.getOwner().getName()).isEqualTo(TestRepository.OWNER_NAME);
     assertThat(aliceJpa.getOwner().getSurname()).isEqualTo("Wick");
   }
@@ -126,6 +127,35 @@ public class MappingTest {
 
     // when
     mapper.map(alice);
+  }
+
+  @Test
+  public void testMappingOnLazy() {
+    // given
+    Injector injector = createInjector((Module) binder ->
+      binder.bind(EntityManager.class).toInstance(entityManager)
+    );
+    MapperFacade mapper = injector.getInstance(MapperFacade.class);
+    Execution execution = testRepository.forCase(Example.LAZY);
+    Database<PetJPA> database = execution.createJpaPetNamedAlice();
+    PetJPA aliceJPA = database.getObject();
+
+    // when
+    Pet alice = mapper.map(aliceJPA);
+
+    // then
+    assertThat(alice).isNotNull();
+    assertThat(alice.getName()).isEqualTo("Alice");
+    thrown.expect(LazyInitializationException.class);
+    thrown.expectMessage(
+      "Trying to use uninitialized collection for type: List<PetJPA>. " +
+      "You need to fetch this collection before using it, for ex. using JOIN FETCH in JPQL. " +
+      "This exception prevents lazy loading n+1 problem."
+    );
+    // mapping has worked okey, but pets list of owner should be lazy loaded and should
+    // cause error if used
+    Optional.ofNullable(alice.getOwner())
+      .ifPresent(o -> o.getPets().size());
   }
 
   private void bindEntityManager(Database<?> database) {

@@ -3,7 +3,9 @@ package pl.wavesoftware.test.mapper;
 import org.hibernate.Hibernate;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Context;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import pl.wavesoftware.test.entity.Pet;
 import pl.wavesoftware.test.jpa.PetJPA;
@@ -23,8 +25,11 @@ import java.util.stream.Collectors;
   componentModel = "jsr330"
 )
 interface PetMapper {
+  @Mapping(target = "reference", ignore = true)
   Pet map(PetJPA jpa, @Context CompositeContext context);
+  @Mapping(target = "id", ignore = true)
   PetJPA map(Pet pet, @Context CompositeContext context);
+  @InheritConfiguration
   void updateFromPet(Pet pet,
                      @MappingTarget PetJPA jpa,
                      @Context CompositeContext context);
@@ -36,6 +41,13 @@ interface PetMapper {
     return set.stream()
       .map(j -> map(j, context))
       .collect(Collectors.toList());
+  }
+
+  default Set<PetJPA> petListToPetJPASet(List<Pet> list,
+                                         @Context CompositeContext context) {
+    return list.stream()
+      .map(p -> map(p, context))
+      .collect(Collectors.toSet());
   }
 
   @AfterMapping

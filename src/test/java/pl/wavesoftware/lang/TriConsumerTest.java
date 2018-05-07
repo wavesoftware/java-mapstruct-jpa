@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
- * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
+ * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
  * @since 2018-05-06
  */
 public class TriConsumerTest {

@@ -1,5 +1,5 @@
 /**
- * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
+ * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
  * @since 2018-05-03
  */
 @ParametersAreNonnullByDefault

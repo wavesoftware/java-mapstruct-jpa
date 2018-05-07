@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
+ * An uninitialized list that will throw an exception on every method called
+ * except {@link #toString()}.
+ *
+ * @param <T> a type of collection
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 17.04.18
  */
 @RequiredArgsConstructor
-public final class UninitializedList<T> implements List<T> {
+public final class UninitializedList<T> implements List<T>, Uninitialized {
 
   private final Class<?> type;
 

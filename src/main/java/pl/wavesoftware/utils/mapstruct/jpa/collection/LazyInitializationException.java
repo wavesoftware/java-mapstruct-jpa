@@ -3,7 +3,7 @@ package pl.wavesoftware.utils.mapstruct.jpa.collection;
 import javax.persistence.PersistenceException;
 
 /**
- * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
+ * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
  * @since 2018-05-02
  */
 public final class LazyInitializationException extends PersistenceException {

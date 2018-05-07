@@ -8,11 +8,16 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
+ * An uninitialized map that will throw an exception on every method called
+ * except {@link #toString()}.
+ *
+ * @param <K> a type of keys
+ * @param <V> a type of value
+ * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
  * @since 2018-05-03
  */
 @RequiredArgsConstructor
-public final class UninitializedMap<K, V> implements Map<K, V> {
+public final class UninitializedMap<K, V> implements Map<K, V>, Uninitialized {
 
   private final Class<?> keyType;
   private final Class<?> valueType;

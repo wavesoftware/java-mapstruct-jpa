@@ -2,8 +2,11 @@ package pl.wavesoftware.test.mapper;
 
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Context;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 import pl.wavesoftware.test.entity.Owner;
 import pl.wavesoftware.test.jpa.OwnerJPA;
 import pl.wavesoftware.utils.mapstruct.jpa.CompositeContext;
@@ -17,8 +20,14 @@ import pl.wavesoftware.utils.mapstruct.jpa.CompositeContext;
   componentModel = "jsr330"
 )
 interface OwnerMapper {
+  @Mapping(target = "reference", ignore = true)
   Owner map(OwnerJPA jpa, @Context CompositeContext context);
+  @Mappings({
+    @Mapping(target = "id", ignore = true),
+    @Mapping(target = "surname", ignore = true)
+  })
   OwnerJPA map(Owner owner, @Context CompositeContext context);
+  @InheritConfiguration
   void updateFromOwner(Owner owner,
                        @MappingTarget OwnerJPA jpa,
                        @Context CompositeContext context);
