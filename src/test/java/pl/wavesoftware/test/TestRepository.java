@@ -2,6 +2,7 @@ package pl.wavesoftware.test;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.collection.internal.PersistentSet;
 import pl.wavesoftware.test.entity.AbstractEntity;
 import pl.wavesoftware.test.entity.Owner;
 import pl.wavesoftware.test.entity.Pet;
@@ -46,7 +47,8 @@ final class TestRepository {
 
   enum Example {
     STANDARD,
-    WITH_TOY
+    WITH_TOY,
+    LAZY
   }
 
   interface Execution {
@@ -117,7 +119,11 @@ final class TestRepository {
       owner.setSurname(OWNER_SURNAME);
 
       alice.setOwner(owner);
-      owner.getPets().addAll(Arrays.asList(alice, kitie));
+      if (example == Example.LAZY) {
+        owner.setPets(new PersistentSet());
+      } else {
+        owner.getPets().addAll(Arrays.asList(alice, kitie));
+      }
 
       DatabaseImpl<PetJPA> db = new DatabaseImpl<>(alice, candidate -> {
         if (candidate instanceof AbstractRecord) {
