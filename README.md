@@ -1,5 +1,7 @@
 # JPA mapping utilities for MapStruct
 
+[![Build Status](https://travis-ci.org/wavesoftware/java-mapstruct-jpa.svg?branch=master)](https://travis-ci.org/wavesoftware/java-mapstruct-jpa) [![Quality Gate](https://sonar.wavesoftware.pl/api/badges/gate?key=pl.wavesoftware.utils:mapstruct-jpa)](https://sonar.wavesoftware.pl/dashboard/index/pl.wavesoftware.utils:mapstruct-jpa) [![Coverage Status](https://coveralls.io/repos/github/wavesoftware/java-mapstruct-jpa/badge.svg?branch=master)](https://coveralls.io/github/wavesoftware/java-mapstruct-jpa?branch=master) [![Maven Central](https://img.shields.io/maven-central/v/pl.wavesoftware.utils/mapstruct-jpa.svg)](https://mvnrepository.com/artifact/pl.wavesoftware.utils/mapstruct-jpa)
+
 A set of utilities focused on mapping JPA managed entities with MapStruct. There are different utilities for different purposes and also a all-in-one utility for maximizing ease of use.
 
 ## Features
