@@ -8,11 +8,15 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
+ * An uninitialized set that will throw an exception on every method called
+ * except {@link #toString()}.
+ *
+ * @param <E> a type of collection
+ * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
  * @since 2018-05-03
  */
 @RequiredArgsConstructor
-public final class UninitializedSet<E> implements Set<E> {
+public final class UninitializedSet<E> implements Set<E>, Uninitialized {
 
   private final Class<?> type;
 

@@ -4,7 +4,7 @@ import org.mapstruct.BeforeMapping;
 import org.mapstruct.MappingTarget;
 
 /**
- * Represents a context that can store created values.
+ * Represents a context that can store created bean instances.
  *
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 02.05.18

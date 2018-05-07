@@ -8,11 +8,10 @@ import com.google.inject.multibindings.Multibinder;
 import lombok.NoArgsConstructor;
 import pl.wavesoftware.utils.mapstruct.jpa.CompositeContext;
 import pl.wavesoftware.utils.mapstruct.jpa.IdentifierCollector;
-import pl.wavesoftware.utils.mapstruct.jpa.JpaMappingContextFactory;
-import pl.wavesoftware.utils.mapstruct.jpa.JpaMappingContextFactoryImpl;
 import pl.wavesoftware.utils.mapstruct.jpa.MapStructContextProvider;
 import pl.wavesoftware.utils.mapstruct.jpa.MappingProvider;
 
+import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import java.util.Set;
 
@@ -48,18 +47,13 @@ public class MapperModule implements Module {
   }
 
   @Provides
-  JpaMappingContextFactory providesJpaMappingContextFactory(EntityManager entityManager) {
-    return new JpaMappingContextFactoryImpl(() -> entityManager);
-  }
-
-  @Provides
   MapStructContextProvider<CompositeContext> providesContextProvider(
-    JpaMappingContextFactory jpaMappingContextFactory,
+    Provider<EntityManager> entityManagerProvider,
     Set<MappingProvider<?, ?, ?>> mappingProviders,
     IdentifierCollector identifierCollector) {
 
-    return new CompositeContextProvider(
-      jpaMappingContextFactory, mappingProviders, identifierCollector
+    return new JpaContextProvider(
+      entityManagerProvider::get, mappingProviders, identifierCollector
     );
   }
 

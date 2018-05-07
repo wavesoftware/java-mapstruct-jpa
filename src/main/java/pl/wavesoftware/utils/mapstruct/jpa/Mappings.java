@@ -3,10 +3,12 @@ package pl.wavesoftware.utils.mapstruct.jpa;
 /**
  * Mappings represents a set of {@link Mapping}'s with a method to search for specific one.
  *
+ * @param <C> a type of context that will be used for mapping
+ *
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 25.04.18
  */
-public interface Mappings {
+public interface Mappings<C> {
 
   /**
    * Searches for a AbstractMapping for given source and target class. Source class is a class
@@ -14,30 +16,35 @@ public interface Mappings {
    *
    * @param sourceClass a source class to map from
    * @param targetClass a target class to map to
-   * @param <S> a type of source class
-   * @param <T> a type of target class
-   * @param <C> a type of context that will be used for mapping
-   * @return a AbstractMapping object for given configuration. If mapping is not found this method will
-   * fail with runtime exception as an indication of configuration error.
+   * @param <S>         a type of source class
+   * @param <T>         a type of target class
+   * @return  a AbstractMapping object for given configuration. If mapping is not found this
+   *          method will fail with runtime exception as an indication of configuration error.
    */
-  <S, T, C> Mapping<S,T,C> getMapping(Class<S> sourceClass,
-                                      Class<T> targetClass);
+  <S, T> Mapping<S,T,C> getMapping(Class<S> sourceClass,
+                                   Class<T> targetClass);
 
   /**
    * Returns a builder for Mappings.
    *
-   * @return a builder interface
+   * @param contextClass a class of a context
+   * @param <C>          a context type used for mappings
+   * @return             a builder interface
    */
-  static MappingsBuilder builder() {
-    return new MappingsBuilderImpl();
+  static <C> MappingsBuilder<C> builder(Class<C> contextClass) {
+    return new MappingsBuilderImpl<>(contextClass);
   }
 
   /**
    * A builder interface for {@link Mappings} class.
+   *
+   * @param <C> a type of context that will be used for mapping
    */
-  interface MappingsBuilder {
+  interface MappingsBuilder<C> {
     /**
-     * Adds a mapping to the builder
+     * Adds a mapping to the builder.
+     * <p>
+     * There is no type checking here, because it's done in runtime, while getting proper mapping.
      *
      * @param mapping a mapping to add
      */
@@ -46,9 +53,9 @@ public interface Mappings {
     /**
      * Will build a Mappings class
      *
-     * @return a builded Mappings
+     * @return a built Mappings
      */
-    Mappings build();
+    Mappings<C> build();
   }
 
 }

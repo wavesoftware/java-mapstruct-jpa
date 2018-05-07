@@ -29,7 +29,7 @@ If you also need support for mapping JPA managed entities and be able to update 
 * `Mappings` object that will provides mapping for given source and target class - mapping is information how to update existing object (managed entity) with data from source object,
 * `IdentifierCollector` should collect managed entity ID from source object
 
-The easiest way to setup all of this is to extend `AbstractCompositeContextProvider`, implement `IdentifierCollector` and implement a set of `MappingProvider` for each type of entity. To provide implementations of `MappingProvider` you should create update methods in your MapStruct mappers.
+The easiest way to setup all of this is to extend `AbstractJpaContextProvider`, implement `IdentifierCollector` and implement a set of `MappingProvider` for each type of entity. To provide implementations of `MappingProvider` you should create update methods in your MapStruct mappers. It utilize `CompositeContext` which can incorporate any number of contexts as a composite.
 
 All of this can be managed by some DI container like Spring or Guice.
 

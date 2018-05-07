@@ -120,7 +120,9 @@ final class TestRepository {
 
       alice.setOwner(owner);
       if (example == Example.LAZY) {
-        owner.setPets(new PersistentSet());
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        Set<PetJPA> lazyPets = (Set<PetJPA>) new PersistentSet();
+        owner.setPets(lazyPets);
       } else {
         owner.getPets().addAll(Arrays.asList(alice, kitie));
       }

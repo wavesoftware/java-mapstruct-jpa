@@ -1,31 +1,33 @@
 package pl.wavesoftware.utils.mapstruct.jpa;
 
 import lombok.RequiredArgsConstructor;
+import pl.wavesoftware.utils.mapstruct.jpa.Mappings.MappingsBuilder;
 
 import javax.annotation.Nullable;
+import javax.persistence.EntityManager;
 import java.util.function.Supplier;
 
 /**
- * @author <a href="krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszyński</a>
- * @since 2018-05-03
+ * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
+ * @since 07.05.18
  */
-public abstract class AbstractCompositeContextProvider
-  implements MapStructContextProvider<CompositeContext> {
-
-  @Override
-  public CompositeContext createNewContext() {
+final class JpaMappingContextProviderImpl {
+  CompositeContext provide(Supplier<EntityManager> entityManager,
+                           Iterable<MappingProvider<?, ?, ?>> mappingProviders,
+                           IdentifierCollector identifierCollector) {
     StoringMappingContext cyclicGraphCtx = new CyclicGraphContext();
     CompositeContextBuilder contextBuilder = CompositeContext.builder();
     Supplier<CompositeContext> contextSupplier = new StoringMappingContextSupplier(contextBuilder);
-    Mappings.MappingsBuilder mappingsBuilder = Mappings.builder();
-    for (MappingProvider<?, ?, ?> mappingProvider : getMappingProviders()) {
+    MappingsBuilder<CompositeContext> mappingsBuilder = Mappings.builder(CompositeContext.class);
+    for (MappingProvider<?, ?, ?> mappingProvider : mappingProviders) {
       mappingsBuilder.addMapping(mappingProvider.provide());
     }
-    JpaMappingContext jpaContext = getJpaMappingContextFactory()
+    JpaMappingContextFactory contextFactory = new JpaMappingContextFactoryImpl(entityManager);
+    JpaMappingContext jpaContext = contextFactory
       .produce(
         contextSupplier,
         mappingsBuilder.build(),
-        getIdentifierCollector()
+        identifierCollector
       );
 
     contextBuilder.addContext(cyclicGraphCtx);
@@ -33,10 +35,6 @@ public abstract class AbstractCompositeContextProvider
 
     return contextSupplier.get();
   }
-
-  protected abstract JpaMappingContextFactory getJpaMappingContextFactory();
-  protected abstract Iterable<MappingProvider> getMappingProviders();
-  protected abstract IdentifierCollector getIdentifierCollector();
 
   @RequiredArgsConstructor
   private static final class StoringMappingContextSupplier implements Supplier<CompositeContext> {

@@ -19,7 +19,7 @@ final class PetMappingProvider implements MappingProvider<Pet, PetJPA, Composite
 
   @Override
   public Mapping<Pet, PetJPA, CompositeContext> provide() {
-    return AbstractCompositeContextMapping.mapperFor(
+    return AbstractCompositeContextMapping.mappingFor(
       Pet.class, PetJPA.class,
       petMapper::updateFromPet
     );

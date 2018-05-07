@@ -18,7 +18,7 @@ final class OwnerMappingProvider implements MappingProvider<Owner, OwnerJPA, Com
 
   @Override
   public Mapping<Owner, OwnerJPA, CompositeContext> provide() {
-    return AbstractCompositeContextMapping.mapperFor(
+    return AbstractCompositeContextMapping.mappingFor(
       Owner.class, OwnerJPA.class,
       ownerMapper::updateFromOwner
     );

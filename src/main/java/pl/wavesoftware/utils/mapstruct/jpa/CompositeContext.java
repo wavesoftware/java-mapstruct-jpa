@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A composite mapping context that can utilize multiple mapping contexts.
+ * A composite mapping context that can utilize multiple mapping contexts to provide
+ * the joined processing. User can add any number of {@link MappingContext} to use in
+ * this composite class.
  *
  * @author <a href="mailto:krzysztof.suszynski@wavesoftware.pl">Krzysztof Suszynski</a>
  * @since 02.05.18
@@ -75,11 +77,10 @@ public final class CompositeContext implements MapStructContext {
     private final List<MappingContext> mappingContexts = new ArrayList<>();
 
     @Override
-    public CompositeContextBuilderImpl addContext(MappingContext... mappingContexts) {
+    public void addContext(MappingContext... mappingContexts) {
       this.mappingContexts.addAll(
         Arrays.asList(mappingContexts)
       );
-      return this;
     }
 
     @Override
